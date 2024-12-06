@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-
+﻿
 namespace DemoAboutQuartzJob.Extensions
 {
     public static class WebApplicationBuilderExtensions
@@ -30,10 +29,13 @@ namespace DemoAboutQuartzJob.Extensions
             {
                 var schedulerJobInfos = configuration.GetSection("Jobs").Get<IDictionary<string, ScheduledJobInfo>>();
 
+                config.SchedulerId   = "JikanAPI_ASPNETCOREAPI";
+                config.SchedulerName = "JikanAPI_Job";
+
                 config
-                    .AddQuartzJob<DemoKafkaJob>(schedulerJobInfos["KafkaJob"])
+                //    .AddQuartzJob<DemoKafkaJob>(schedulerJobInfos["KafkaJob"])
                     .AddQuartzJob<SendingMailJob>(schedulerJobInfos["MailJob"]);
-    
+
             });
             services.AddQuartzServer(q => q.WaitForJobsToComplete = true);
 
