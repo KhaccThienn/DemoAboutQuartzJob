@@ -1,1 +1,19 @@
-﻿
+﻿global using Confluent.Kafka;
+global using DemoAboutQuartzJob.Applications.Behaviors;
+global using DemoAboutQuartzJob.Applications.Jobs;
+global using DemoAboutQuartzJob.Extensions;
+global using DemoAboutQuartzJob.Infrastructures.Models;
+global using DemoAboutQuartzJob.Infrastructures.Services;
+global using DemoAboutQuartzJob.Infrastructures.Tools;
+global using MailKit.Net.Smtp;
+global using MediatR;
+global using MimeKit;
+global using Polly;
+global using Polly.Retry;
+global using Quartz;
+global using Quartz.AspNetCore;
+global using Quartz.Impl.Matchers;
+global using System.Net.Sockets;
+global using System.Reflection;
+global using System.Text;
+global using System.Text.Json;

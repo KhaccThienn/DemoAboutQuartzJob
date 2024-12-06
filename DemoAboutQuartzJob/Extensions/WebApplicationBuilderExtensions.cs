@@ -1,12 +1,4 @@
-﻿using DemoAboutQuartzJob.Applications.Behaviors;
-using DemoAboutQuartzJob.Applications.Jobs;
-using DemoAboutQuartzJob.Infrastructures.Models;
-using DemoAboutQuartzJob.Infrastructures.Services;
-using Microsoft.VisualBasic;
-using Quartz;
-using Quartz.AspNetCore;
-using Quartz.Impl.Matchers;
-using System.Text;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace DemoAboutQuartzJob.Extensions
 {
@@ -22,12 +14,13 @@ namespace DemoAboutQuartzJob.Extensions
                 cfg.RegisterServicesFromAssemblyContaining(typeof(Program))
                     .AddOpenBehavior(typeof(LoggingBehavior<,>));
             })
-            .AddSingleton<KafkaProducerService>();
+            .AddSingleton<KafkaProducerService>()
+            .AddSingleton<MailPostTool>();
 
             return builder;
         }
 
-        public static WebApplicationBuilder SetupQuartzJobs(this WebApplicationBuilder builder)
+        private static WebApplicationBuilder SetupQuartzJobs(this WebApplicationBuilder builder)
         {
 
             var services      = builder.Services;
@@ -38,8 +31,9 @@ namespace DemoAboutQuartzJob.Extensions
                 var schedulerJobInfos = configuration.GetSection("Jobs").Get<IDictionary<string, ScheduledJobInfo>>();
 
                 config
-                    .AddQuartzJob<DemoKafkaJob>(schedulerJobInfos["KafkaJob"]);
-
+                    .AddQuartzJob<DemoKafkaJob>(schedulerJobInfos["KafkaJob"])
+                    .AddQuartzJob<SendingMailJob>(schedulerJobInfos["MailJob"]);
+    
             });
             services.AddQuartzServer(q => q.WaitForJobsToComplete = true);
 

@@ -1,8 +1,4 @@
-﻿using Quartz;
-using Quartz.Impl.Matchers;
-using System.Text;
-
-namespace DemoAboutQuartzJob.Extensions
+﻿namespace DemoAboutQuartzJob.Extensions
 {
     public static class WebApplicationExtensions
     {

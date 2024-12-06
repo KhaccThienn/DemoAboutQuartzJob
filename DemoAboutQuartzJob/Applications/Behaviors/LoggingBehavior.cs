@@ -1,9 +1,4 @@
-﻿using DemoAboutQuartzJob.Extensions;
-using DemoAboutQuartzJob.Infrastructures.Models;
-using MediatR;
-using System.Text.Json;
-
-namespace DemoAboutQuartzJob.Applications.Behaviors
+﻿namespace DemoAboutQuartzJob.Applications.Behaviors
 {
     public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {

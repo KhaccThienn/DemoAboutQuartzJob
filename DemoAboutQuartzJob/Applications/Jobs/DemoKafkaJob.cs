@@ -1,9 +1,4 @@
-﻿using DemoAboutQuartzJob.Extensions;
-using DemoAboutQuartzJob.Infrastructures.Services;
-using Manonero.MessageBus.Kafka.Abstractions;
-using Quartz;
-
-namespace DemoAboutQuartzJob.Applications.Jobs
+﻿namespace DemoAboutQuartzJob.Applications.Jobs
 {
     public class DemoKafkaJob(ILogger<DemoKafkaJob> logger, KafkaProducerService kafkaService) : IJob
     {
@@ -11,11 +6,14 @@ namespace DemoAboutQuartzJob.Applications.Jobs
         {
             string topic = "demo-topic";
             string message = $"Hello Kafka! Sent at {DateTime.Now}";
+            
+            Console.WriteLine();
             logger.LogWithTime("Start DemoKafkaJob");
             logger.LogWithTime("Producing Kafka message...");
+            
             await kafkaService.ProduceAsync(topic, message);
-            logger.LogWithTime("End DemoKafkaJob");
-
+            
+            logger.LogWithTime("End DemoKafkaJob \n");
         }
     }
 }

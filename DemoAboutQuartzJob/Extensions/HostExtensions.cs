@@ -1,7 +1,4 @@
-﻿using Polly;
-using System.Net.Sockets;
-
-namespace DemoAboutQuartzJob.Extensions
+﻿namespace DemoAboutQuartzJob.Extensions
 {
     public static class HostExtensions
     {

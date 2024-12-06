@@ -1,7 +1,4 @@
-﻿using Confluent.Kafka;
-using DemoAboutQuartzJob.Extensions;
-
-namespace DemoAboutQuartzJob.Infrastructures.Services
+﻿namespace DemoAboutQuartzJob.Infrastructures.Services
 {
     public class KafkaProducerService
     {

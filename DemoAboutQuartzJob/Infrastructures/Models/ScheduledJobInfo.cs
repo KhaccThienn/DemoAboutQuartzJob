@@ -1,6 +1,4 @@
-﻿using Quartz;
-
-namespace DemoAboutQuartzJob.Infrastructures.Models
+﻿namespace DemoAboutQuartzJob.Infrastructures.Models
 {
     /// <summary>
     /// Lớp chứa thông tin cấu hình cho một công việc được lên lịch trong Quartz.NET.
